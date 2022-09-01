@@ -73,6 +73,17 @@ app.get("/quotes", (req, res) => {
   res.send(quotes);
 });
 
+app.get("/quotes/:id", (req, res) => {
+  const id = Number(req.params.id);
+  const quote = quotes.find((quote) => quote.id === id);
+
+  if (quote) {
+    res.send(quote);
+  } else {
+    res.status(404).send({ error: "Quote not found!" });
+  }
+});
+
 app.get("/random", (req, res) => {
   const randomQuote = Math.floor(Math.random() * quotes.length);
   res.send(quotes[randomQuote]);
