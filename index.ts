@@ -73,6 +73,11 @@ app.get("/quotes", (req, res) => {
   res.send(quotes);
 });
 
+app.get("/random", (req, res) => {
+  const randomQuote = Math.floor(Math.random() * quotes.length);
+  res.send(quotes[randomQuote]);
+});
+
 app.listen(port, function () {
   console.log(`Server is Online on ${port}`);
 });
